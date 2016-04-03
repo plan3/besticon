@@ -92,7 +92,6 @@ There is not a lot to configure but these environment variables exist
 Variable         | Description            | Default Value
 --------         | -----------            | -------------
 `PORT`           | HTTP server port       | 8080
-`CACHE_SIZE_MB`  | Size for the [groupcache](http://github.com/golang/groupcache)|32
 
 
 
@@ -103,8 +102,6 @@ Package | Description | License
 <http://github.com/NYTimes/gziphandler> | net/http gzip compression | [Apache License, Version 2.0](https://github.com/NYTimes/gziphandler/blob/master/LICENSE.md) |
 <http://github.com/PuerkitoBio/goquery> |  |[BSD style](https://github.com/PuerkitoBio/goquery/blob/master/LICENSE) |
 <http://github.com/andybalholm/cascadia> | CSS selectors| [License](https://github.com/andybalholm/cascadia/blob/master/LICENSE) |
-<http://github.com/golang/groupcache> | | [Apache License 2.0](https://github.com/golang/groupcache/blob/master/LICENSE)
-<http://github.com/golang/protobuf> | | [License](https://github.com/golang/protobuf/blob/master/LICENSE)
 <http://github.com/golang/freetype> | | [FreeType License](https://github.com/golang/freetype/blob/master/LICENSE)
 <http://golang.org/x/image> | supplementary image libraries | [BSD style](https://github.com/golang/image/blob/master/LICENSE) |
 <http://golang.org/x/net> | | [BSD style](https://github.com/golang/net/blob/master/LICENSE)|

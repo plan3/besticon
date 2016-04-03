@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"expvar"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -336,22 +335,4 @@ var funcMap = template.FuncMap{
 
 func imgWidth(i *besticon.Icon) int {
 	return i.Width / 2.0
-}
-
-func init() {
-	cacheSize := os.Getenv("CACHE_SIZE_MB")
-	if cacheSize == "" {
-		besticon.SetCacheMaxSize(32)
-	} else {
-		n, _ := strconv.Atoi(cacheSize)
-		besticon.SetCacheMaxSize(int64(n))
-	}
-
-	if besticon.CacheEnabled() {
-		expvar.Publish("cacheBytes", expvar.Func(func() interface{} { return besticon.GetCacheStats().Bytes }))
-		expvar.Publish("cacheItems", expvar.Func(func() interface{} { return besticon.GetCacheStats().Items }))
-		expvar.Publish("cacheGets", expvar.Func(func() interface{} { return besticon.GetCacheStats().Gets }))
-		expvar.Publish("cacheHits", expvar.Func(func() interface{} { return besticon.GetCacheStats().Hits }))
-		expvar.Publish("cacheEvictions", expvar.Func(func() interface{} { return besticon.GetCacheStats().Evictions }))
-	}
 }
