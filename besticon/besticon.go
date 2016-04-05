@@ -12,7 +12,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"net/http/cookiejar"
 	"net/url"
 	"os"
 	"sort"
@@ -32,7 +31,6 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"golang.org/x/net/html/charset"
-	"golang.org/x/net/publicsuffix"
 )
 
 var defaultFormats []string
@@ -394,18 +392,6 @@ func setDefaultHeaders(req *http.Request) {
 	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10")
 }
 
-func mustInitCookieJar() *cookiejar.Jar {
-	options := cookiejar.Options{
-		PublicSuffixList: publicsuffix.List,
-	}
-	jar, e := cookiejar.New(&options)
-	if e != nil {
-		panic(e)
-	}
-
-	return jar
-}
-
 func absoluteURL(baseURL *url.URL, path string) (string, error) {
 	url, e := url.Parse(path)
 	if e != nil {
@@ -461,7 +447,6 @@ func init() {
 }
 
 func setHTTPClient(c *http.Client) {
-	c.Jar = mustInitCookieJar()
 	client = c
 }
 
