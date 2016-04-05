@@ -406,15 +406,6 @@ func mustInitCookieJar() *cookiejar.Jar {
 	return jar
 }
 
-func checkRedirect(req *http.Request, via []*http.Request) error {
-	setDefaultHeaders(req)
-
-	if len(via) >= 10 {
-		return errors.New("stopped after 10 redirects")
-	}
-	return nil
-}
-
 func absoluteURL(baseURL *url.URL, path string) (string, error) {
 	url, e := url.Parse(path)
 	if e != nil {
@@ -471,7 +462,6 @@ func init() {
 
 func setHTTPClient(c *http.Client) {
 	c.Jar = mustInitCookieJar()
-	c.CheckRedirect = checkRedirect
 	client = c
 }
 
