@@ -348,6 +348,7 @@ func get(url string) (*http.Response, error) {
 	if e != nil {
 		return nil, e
 	}
+	req.Close = true
 
 	setDefaultHeaders(req)
 
